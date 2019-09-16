@@ -1222,8 +1222,8 @@ class FPDF(object):
             # Page content
             content = self.pages[n]["content"]
             if self.compress:
-                # manage binary data as latin1 until PEP461 or similar is implemented
-                p = content.encode("latin1") if PY3K else content
+                # manage binary data as cp1252 because latin1 can't handle some characters
+                p = content.encode("cp1252") if PY3K else content
                 p = zlib.compress(p)
             else:
                 p = content
